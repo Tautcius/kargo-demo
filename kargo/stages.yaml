@@ -64,7 +64,7 @@ spec:
       writeBranch: stage/prod
       kustomize:
         images:
-        - image: nginx
+        - image: ghcr.io/tautcius/kargo-demo-app
           path: stages/prod
     argoCDAppUpdates:
     - appName: kargo-demo-prod

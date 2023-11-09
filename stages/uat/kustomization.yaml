@@ -23,6 +23,6 @@ patches:
       value: "uat"
 
 images:
-- name: nginx
+- name: ghcr.io/tautcius/kargo-demo-app
   newName: ghcr.io/tautcius/kargo-demo-app
   newTag: 0.0.4
