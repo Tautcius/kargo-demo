@@ -15,7 +15,7 @@ spec:
     repos:
       images:
       - repoURL: nginx
-        semverConstraint: ^1.24.0
+        semverConstraint: ^1.23.0
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/Tautcius/kargo-demo
