@@ -14,15 +14,15 @@ spec:
   subscriptions:
     repos:
       images:
-      - repoURL: nginx
-        semverConstraint: ^1.23.0
+      - repoURL: ghcr.io/tautcius/kargo-demo-app
+        semverConstraint: ^0.0.1
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/Tautcius/kargo-demo
       writeBranch: stage/test
       kustomize:
         images:
-        - image: nginx
+        - image: ghcr.io/tautcius/kargo-demo-app
           path: stages/test
     argoCDAppUpdates:
     - appName: kargo-demo-test
@@ -43,7 +43,7 @@ spec:
       writeBranch: stage/uat
       kustomize:
         images:
-        - image: nginx
+        - image: ghcr.io/tautcius/kargo-demo-app
           path: stages/uat
     argoCDAppUpdates:
     - appName: kargo-demo-uat
