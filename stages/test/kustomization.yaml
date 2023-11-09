@@ -15,5 +15,5 @@ patches:
     name: kargo-demo
 images:
 - name: nginx
-  newName: nginx
-  newTag: 1.23.4
+  newName: ghcr.io/tautcius/kargo-demo-app
+  newTag: 0.0.4
