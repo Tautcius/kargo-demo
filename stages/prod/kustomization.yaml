@@ -13,3 +13,10 @@ patches:
     - op: replace
       path: /spec/ports/0/nodePort
       value: 30083
+- target:
+    kind: Deployment
+    name: kargo-demo
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/0/value
+      value: "prod"

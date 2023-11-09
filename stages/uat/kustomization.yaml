@@ -13,7 +13,16 @@ patches:
   target:
     kind: Service
     name: kargo-demo
+
+- target:
+    kind: Deployment
+    name: kargo-demo
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/0/value
+      value: "uat"
+
 images:
 - name: nginx
   newName: ghcr.io/tautcius/kargo-demo-app
-  newTag: 0.0.2
+  newTag: 0.0.4
