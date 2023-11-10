@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ../base
+- presync-job.yaml
 
 namePrefix: test-
 nameSuffix: -sync
