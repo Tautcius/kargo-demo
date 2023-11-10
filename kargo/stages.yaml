@@ -37,10 +37,6 @@ spec:
   subscriptions:
     upstreamStages:
     - name: dev
-    repos:
-      images:
-      - repoURL: ghcr.io/tautcius/kargo-demo-app
-        semverConstraint: ^0.0.1
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/Tautcius/kargo-demo
