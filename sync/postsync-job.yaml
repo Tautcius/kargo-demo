@@ -9,13 +9,7 @@ spec:
       containers:
       - name: busybox
         image: busybox
-        command: 
-          - "echo"
-          - "Kubernetes Job"
-          - "sleep"
-          - "10"
-          - "echo"
-          - "Kubernetes Job have finished"
+        command: ["ls","/knoldus"]
       restartPolicy: Never
   backoffLimit: 4
 
