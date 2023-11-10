@@ -12,7 +12,12 @@ spec:
       containers:
       - name: busybox
         image: busybox
-        command: ["ls","/knoldus"]
+        command: ["/bin/sh", "-c"]
+        args: 
+          - |
+            echo "simulating e2e test...."
+            sleep 5
+            echo "e2e test done"
       restartPolicy: Never
-  backoffLimit: 1
+  backoffLimit: 0
 

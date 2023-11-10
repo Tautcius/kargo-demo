@@ -12,7 +12,12 @@ spec:
       containers:
       - name: busybox
         image: busybox
-        command: ["echo", "Kubernetes Job"]
+        command: ["/bin/sh", "-c"]
+        args: 
+          - |
+            echo "simulating migration...."
+            sleep 5
+            echo "migration done"
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 0
 
