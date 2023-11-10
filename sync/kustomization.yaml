@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - ../base
 - presync-job.yaml
+- postsync-job.yaml
 
 namePrefix: test-
 nameSuffix: -sync

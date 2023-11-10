@@ -3,12 +3,19 @@ kind: Job
 metadata:
   name: e2e-test
 spec:
+  ttlSecondsAfterFinished: 15
   template:
     spec:
       containers:
-      - name: pi
-        image: perl:5.34.0
-        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      - name: busybox
+        image: busybox
+        command: 
+          - "echo"
+          - "Kubernetes Job"
+          - "sleep"
+          - "10"
+          - "echo"
+          - "Kubernetes Job have finished"
       restartPolicy: Never
   backoffLimit: 4
 
