@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceededd
+spec:
+  ttlSecondsAfterFinished: 15
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args: 
+          - |
+            echo "simulating migration...."
+            sleep 5
+            echo "migration done"
+      restartPolicy: Never
+  backoffLimit: 0
+
