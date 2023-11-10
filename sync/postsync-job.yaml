@@ -2,8 +2,11 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: e2e-test
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceededd
 spec:
-  ttlSecondsAfterFinished: 15
+  # ttlSecondsAfterFinished: 15
   template:
     spec:
       containers:
@@ -11,5 +14,5 @@ spec:
         image: busybox
         command: ["ls","/knoldus"]
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 1
 
