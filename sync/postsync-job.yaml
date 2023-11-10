@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceededd
 spec:
-  # ttlSecondsAfterFinished: 15
+  ttlSecondsAfterFinished: 15
   template:
     spec:
       containers:
@@ -17,7 +17,8 @@ spec:
           - |
             echo "simulating e2e test...."
             sleep 5
-            echo "e2e test done"
+            echo "e2e test failed"
+            exit 1 
       restartPolicy: Never
   backoffLimit: 0
 
