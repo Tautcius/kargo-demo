@@ -8,10 +8,35 @@ metadata:
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
+  name: dev
+  namespace: kargo-demo
+spec:
+  subscriptions:
+    repos:
+      images:
+      - repoURL: ghcr.io/tautcius/kargo-demo-app
+        semverConstraint: ^0.0.1
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/Tautcius/kargo-demo
+      writeBranch: stage/dev
+      kustomize:
+        images:
+        - image: ghcr.io/tautcius/kargo-demo-app
+          path: stages/dev
+    argoCDAppUpdates:
+    - appName: kargo-demo-dev
+      appNamespace: argocd
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
   name: test
   namespace: kargo-demo
 spec:
   subscriptions:
+    upstreamStages:
+    - name: dev
     repos:
       images:
       - repoURL: ghcr.io/tautcius/kargo-demo-app
@@ -26,6 +51,27 @@ spec:
           path: stages/test
     argoCDAppUpdates:
     - appName: kargo-demo-test
+      appNamespace: argocd
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: qa
+  namespace: kargo-demo
+spec:
+  subscriptions:
+    upstreamStages:
+    - name: test
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/Tautcius/kargo-demo
+      writeBranch: stage/qa
+      kustomize:
+        images:
+        - image: ghcr.io/tautcius/kargo-demo-app
+          path: stages/qa
+    argoCDAppUpdates:
+    - appName: kargo-demo-qa
       appNamespace: argocd
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -58,6 +104,7 @@ spec:
   subscriptions:
     upstreamStages:
     - name: uat
+    - name: qa
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/Tautcius/kargo-demo
