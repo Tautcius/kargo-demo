@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: e2e-test
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceededd
+spec:
+  ttlSecondsAfterFinished: 15
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args: 
+          - |
+            echo "simulating e2e test...."
+            sleep 5
+            echo "e2e test failed"
+            exit 1 
+      restartPolicy: Never
+  backoffLimit: 0
+
